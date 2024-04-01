@@ -1,5 +1,5 @@
 <x-app-layout>
-
+     Hello world
 </x-app-layout>
 {{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
