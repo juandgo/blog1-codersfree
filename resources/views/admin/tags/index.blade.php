@@ -3,17 +3,12 @@
 @section('title', 'DeveloTech')
 
 @section('content_header')
-<h1>Lista de Categorías</h1>
+<a href="{{ route('admin.tags.create') }}" class="btn btn-secondary float-right">Nueva etiqueta</a>
+<h1>Mostrar listado de etiqueta</h1>
 @stop
 
 @section('content')
-
-@if (session('info'))
-    <div class="alert alert-success"><strong>{{ session('info') }}</strong></div>
-@endif
-
 <div class="card">
-    <div class="card-header"><a href="{{ route('admin.categories.create') }}" class="btn btn-secondary">Agregar Categoría</a></div>
     <div class="card-body">
         <table class="table table-striped">
             <thead>
@@ -24,15 +19,16 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categories as $category)
+                @foreach ($tags as $tag)
                 <tr>
-                    <td>{{ $category->id }}</td>
-                    <td>{{ $category->name }}</td>
+                    <td>{{ $tag->id }}</td>
+                    <td>{{ $tag->name }}</td>
+                    <td colspan="2"></td>
                     <td width="10px">
-                        <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-primary btn-sm">Editar</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('admin.tags.edit', $tag) }}">Editar</a>
                     </td>
                     <td width="10px">
-                        <form action="{{ route('admin.categories.destroy', $category) }}" method="post">
+                        <form action="{{ route('admin.tags.destroy', $tag) }}" method="post">
                             @csrf
                             @method('delete')
                             <button class="btn btn-danger btn-sm">Eliminar</button>
@@ -41,7 +37,7 @@
                 </tr>
                 @endforeach
             </tbody>
-        </table>
+        </div>
     </div>
 </div>
 @stop
