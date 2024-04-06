@@ -32,7 +32,7 @@ class TagController extends Controller
             'pink' => 'Color rosado'
         ];
 
-        return view('admin.tags.create', compact('colors'));
+        return view('admin.tags.create', compact('colors'))->with('info','La etiqueta se creó con éxito');
     }
 
     /**
@@ -64,7 +64,17 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        return view('admin.tags.edit', compact('tag'));
+        $colors = [
+            'red' => 'Color rojo',
+            'yellow' => 'Color amarillo',
+            'green' => 'Color verde',
+            'blue' => 'Color azul',
+            'indigo' => 'Color indigo',
+            'pulple' => 'Color morado',
+            'pink' => 'Color rosado'
+        ];
+
+        return view('admin.tags.edit', compact('tag','colors'));
     }
 
     /**
@@ -72,7 +82,15 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'slug'=>'required|unique:tags,slug,$tag->id',
+            'color'=> 'required'
+        ]);
+
+        $tag->update($request->all());
+
+        return redirect()->route('admin.tags.edit', $tag)->with('info','La etiqueta se actualizó con éxito');
     }
 
     /**
@@ -80,6 +98,8 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+
+        return redirect()->route('admin.tags.index')->with('info','La etiqueta se eliminó con éxito');
     }
 }
