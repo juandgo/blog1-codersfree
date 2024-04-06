@@ -3,12 +3,12 @@
 @section('title', 'DeveloTech')
 
 @section('content_header')
-<h1>Detalle de etiqueta</h1>
-
+<a href="{{ route('admin.posts.create') }}" class="btn btn-secondary btn-sm float-right">Crear Post</a>
+<h1>Listado de posts</h1>
 @stop
 
 @section('content')
-    <h1>Detalle de etiqueta</h1>
+    @livewire('admin.posts-index')
 @stop
 
 @section('css')

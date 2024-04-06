@@ -3,12 +3,11 @@
 @section('title', 'DeveloTech')
 
 @section('content_header')
-<h1>Detalle de etiqueta</h1>
-
+    <h1>Mostrar Post</h1>
 @stop
 
 @section('content')
-    <h1>Detalle de etiqueta</h1>
+    <p>Welcome to this beautiful admin panel.</p>
 @stop
 
 @section('css')
